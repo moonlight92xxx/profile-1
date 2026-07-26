@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SYX // House of Baba Yaga</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+
+<canvas id="bg-canvas"></canvas>
+<canvas id="coin-canvas"></canvas>
+<div class="vignette"></div>
+
+<div class="stage">
+
+  <div class="header-row stagger-in">
+    <div class="stat-block left">
+      <div class="eyebrow">DOSSIER // BABA YAGA</div>
+      <div class="callsign">SYX</div>
+      <div class="role">The Boogeyman // Excommunicado</div>
+      <div class="level-label" id="levelLabel">LEVEL 0.000</div>
+      <div class="level-bar"><div class="level-fill" id="levelFill" style="--fill:0%"></div></div>
+      <div class="exp-label" id="expLabel">EXP 0 / 99,999</div>
+    </div>
+
+    <div style="width:1px;"></div>
+
+    <div class="stat-block right">
+      <div class="right-line">UPTIME <b id="uptimeVal">00:00:00</b></div>
+      <div class="right-line flavor-line" style="color:var(--text-dim); font-size:10px;">You don't log in.<br>The Table remembers you.</div>
+      <button class="ghost-btn" id="ghostProtocolBtn">GHOST PROTOCOL</button>
+      <div class="stats-row">
+        <div class="right-line">MARKERS <b id="uploadsVal">0</b></div>
+        <div class="right-line">WITNESSES <b id="followersVal">0</b></div>
+        <div class="right-line">SIGNAL <b id="signalVal">0%</b></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="boom-flash"></div>
+  <div id="glitch-overlay"></div>
+  <div id="static-overlay"></div>
+  <svg id="crack-overlay" class="crack-overlay" viewBox="0 0 400 400" preserveAspectRatio="xMidYMid slice">
+    <g stroke="#D4AF37" stroke-width="2" fill="none">
+      <path class="crack-path" d="M200,200 L110,80"/>
+      <path class="crack-path" d="M200,200 L290,70"/>
+      <path class="crack-path" d="M200,200 L345,215"/>
+      <path class="crack-path" d="M200,200 L55,245"/>
+      <path class="crack-path" d="M200,200 L170,345"/>
+      <path class="crack-path" d="M200,200 L270,325"/>
+      <path class="crack-path" d="M200,200 L130,150"/>
+      <path class="crack-path" d="M200,200 L260,165"/>
+    </g>
+  </svg>
+  <div id="ghost-quote" class="ghost-quote"></div>
+
+  <div class="sigil-wrap">
+    <div class="apex-mark"></div>
+    <svg viewBox="0 0 400 400">
+      <defs>
+        <radialGradient id="glow" cx="50%" cy="45%" r="55%">
+          <stop offset="0%" stop-color="#D4AF37" stop-opacity="0.55"/>
+          <stop offset="45%" stop-color="#D4AF37" stop-opacity="0.18"/>
+          <stop offset="100%" stop-color="#D4AF37" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="hoodfade" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#1a0e08"/>
+          <stop offset="100%" stop-color="#000000"/>
+        </linearGradient>
+        <filter id="spiky">
+          <feTurbulence type="fractalNoise" baseFrequency="0.012" numOctaves="3" seed="7" result="turb"/>
+          <feDisplacementMap in="SourceGraphic" in2="turb" scale="26"/>
+        </filter>
+      </defs>
+      <circle cx="200" cy="190" r="185" fill="url(#glow)"/>
+      <circle cx="200" cy="190" r="150" fill="none" stroke="#D4AF37" stroke-opacity="0.35" filter="url(#spiky)"/>
+      <circle cx="200" cy="190" r="120" fill="none" stroke="#D4AF37" stroke-opacity="0.2" filter="url(#spiky)"/>
+      <path d="M200 55 C130 55 95 130 100 210 C104 275 140 320 200 345 C260 320 296 275 300 210 C305 130 270 55 200 55 Z"
+            fill="url(#hoodfade)" stroke="#D4AF37" stroke-opacity="0.55" stroke-width="1.5"/>
+      <path d="M200 95 C160 95 138 150 142 205 C145 250 168 285 200 305 C232 285 255 250 258 205 C262 150 240 95 200 95 Z"
+            fill="#020402"/>
+      <g stroke="#D4AF37" stroke-opacity="0.5" stroke-width="1" filter="url(#spiky)">
+        <line x1="200" y1="60" x2="200" y2="15"/>
+        <line x1="150" y1="70" x2="110" y2="35"/>
+        <line x1="250" y1="70" x2="290" y2="35"/>
+        <line x1="120" y1="120" x2="60" y2="110"/>
+        <line x1="280" y1="120" x2="340" y2="110"/>
+        <line x1="105" y1="200" x2="40" y2="200"/>
+        <line x1="295" y1="200" x2="360" y2="200"/>
+        <line x1="130" y1="290" x2="90" y2="330"/>
+        <line x1="270" y1="290" x2="310" y2="330"/>
+        <line x1="200" y1="345" x2="200" y2="390"/>
+      </g>
+    </svg>
+    <img class="avatar-img" src="img/avatar.gif" alt="avatar" onerror="this.style.display='none'">
+  </div>
+
+  <div class="main-grid">
+
+    <div class="player-col">
+      <div class="panel player">
+        <div class="art">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="1.4"><path d="M12 2 L20 20 L4 20 Z"/></svg>
+        </div>
+        <div>
+          <span class="heart">♡</span>
+          <div class="track-title">HEART OF THE HUNTER</div>
+          <div class="track-sub">azur92</div>
+        </div>
+        <div class="wave" id="wave"></div>
+        <div class="times"><span id="curTime">00:00</span><span id="durTime">00:00</span></div>
+        <div class="controls">
+          <span class="side" id="shuffleBtn">⤮</span>
+          <span class="side" id="prevBtn">⏮</span>
+          <div class="play-btn">▶</div>
+          <span class="side" id="nextBtn">⏭</span>
+          <span class="side" id="repeatBtn">⟲</span>
+        </div>
+        <div class="volume-row">
+          <span class="vol-icon" id="volIcon">🔊</span>
+          <input type="range" id="volumeSlider" min="0" max="100" value="70">
+        </div>
+      </div>
+    </div>
+
+    <div class="chat-col"></div>
+    <div class="toggle-col"></div>
+
+  </div>
+
+  <footer class="system-line">NO BUSINESS CONDUCTED HERE</footer>
+
+</div>
+
+<!-- V-Bot (bottom-left, click to open chat) -->
+<div id="vbot-wrap"><canvas id="vbot-canvas"></canvas></div>
+
+<!-- Day/Night VFX switch (bottom-right, circular to mirror the V-Bot) -->
+<!-- Blood Oath — day/night VFX toggle, tendril-slider styled -->
+<div class="venom-toggle-panel">
+  <div class="venom-toggle-title">// BLOOD OATH //</div>
+  <div class="venom-track" id="venomTrack">
+    <span class="venom-end" data-mode="offline">EXILED</span>
+    <span class="venom-end" data-mode="online">MARKED</span>
+    <div class="venom-thumb" id="venomThumb">
+      <span class="tendril t1"></span>
+      <span class="tendril t2"></span>
+      <span class="tendril t3"></span>
+      <span class="thumb-core"></span>
+    </div>
+  </div>
+  <div class="venom-sub" id="venomSub">the oath holds</div>
+</div>
+
+<!-- Ghost Chat modal -->
+<div id="chat-modal">
+  <div class="panel chat">
+    <div class="chat-head">
+      <span>MARKER CHAT // SECURE</span>
+      <span>
+        <span class="x" id="chatClose">✕</span>
+      </span>
+    </div>
+    <div class="chat-body" id="chatBody">
+      <div class="msg">
+        <div class="who"><span class="dot"></span>PETITIONER · 00:41</div>
+        <div class="bubble">Are you real?</div>
+      </div>
+      <div class="msg self">
+        <div class="who"><span class="dot"></span>SYX · 00:41</div>
+        <div class="bubble">I am the debt you cannot pay. Choose your words carefully.</div>
+      </div>
+    </div>
+    <div class="chat-input">
+      <input type="text" id="chatInput" placeholder="State your business...">
+      <span class="send" id="chatSend">▷</span>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="js/particles-bg.js"></script>
+<script src="js/bg-coin.js"></script>
+<script src="js/main.js"></script>
+
+</body>
+</html>
