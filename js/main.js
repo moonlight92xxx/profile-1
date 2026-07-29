@@ -20,9 +20,9 @@ const SYX_API_ENDPOINT = "https://syx-chat-proxy.syx-venom02.workers.dev/chat";
 /* TODO: swap these in for your final 3 real mp3 files once uploaded —
    currently pointing at the same placeholder audio for all 3 slots. */
 const TRACKS = [
-  { title:"HEART OF THE HUNTER",   artist:"azur92", src:"music/track1.mp3" },
-  { title:"WHISPERS IN THE RAIN",  artist:"azur92", src:"music/track2.mp3" },
-  { title:"ONLY SHADOWS REMAIN",   artist:"azur92", src:"music/track3.mp3" },
+  { title:"HEART OF THE HUNTER",   artist:"babaYaga", src:"music/track1.mp3" },
+  { title:"WHISPERS IN THE RAIN",  artist:"babaYaga", src:"music/track2.mp3" },
+  { title:"ONLY SHADOWS REMAIN",   artist:"babaYaga", src:"music/track3.mp3" },
 ];
 
 const audio = new Audio();
